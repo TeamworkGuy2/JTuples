@@ -1,0 +1,41 @@
+TTuples(var) ::= <<
+package $var.packageName$;
+
+import java.util.Map;
+
+/** Tuples utility methods.
+ * @author TeamworkGuy2
+ * @since 2014-8-6
+ */
+@javax.annotation.Generated("StringTemplate")
+public final class $var.className$ {
+
+	private $var.className$() { throw new AssertionError("cannot instantiate static class $var.className$"); \}
+
+
+$var.types:{typeItems |
+	/** Convert a set of values to a tuple
+	 * @return the newly created tuple
+	 */
+	public static final <$typeItems:{type | A$i0$}; separator=", "$> Tuple$length(typeItems)$<$typeItems:{type | A$i0$}; separator=", "$> of($typeItems:{type | A$type$ arg$i0$}; separator=", "$) {
+		return new Tuple$length(typeItems)$<>($typeItems:{type | arg$i0$}; separator=", "$);
+	\}
+
+
+	/** Copy an existing tuple
+	 * @return the new tuple containing the same values as the original tuple
+	 */
+	public static final <$typeItems:{type | A$i0$}; separator=", "$> Tuple$length(typeItems)$<$typeItems:{type | A$i0$}; separator=", "$> copy(Tuple$length(typeItems)$<$typeItems:{type | A$i0$}; separator=", "$> src) {
+		return new Tuple$length(typeItems)$<>($typeItems:{type | src.value$i0$}; separator=", "$);
+	\}
+
+
+}$	/** Copy an existing Map.Entry
+	 * @return the new Map.Entry containing the same values as the original tuple
+	 */
+	public static final <A1, A2> Map.Entry<A1, A2> copy(Map.Entry<A1, A2> src) {
+		return new Tuple2<>(src.getKey(), src.getValue());
+	\}
+
+\}
+>>

@@ -1,0 +1,10 @@
+{
+	"version" : "0.1.0",
+	"name" : "jtuples",
+	"description" : "Tuples (i.e. Map.Entry) and helpers for creating, copying, and mapping 2, 3, and 4 parameter tuples",
+	"homepage" : "https://github.com/TeamworkGuy2/JTuples",
+	"license" : "MIT",
+	"main" : "./bin/jtuples.jar",
+	"dependencies" : {
+	}
+}

@@ -1,0 +1,116 @@
+TTuple(var) ::= <<
+package $var.packageName$;
+
+/** Tuple (N-way {@link java.util.Map.Entry\} like) data structure.
+ * @author TeamworkGuy2
+ * @since 2014-8-6
+ */
+@javax.annotation.Generated("StringTemplate")
+public class $var.className$<$var.types:{type | A$i0$}; separator=", "$>$if(var.implementClassNames)$ implements $var.implementClassNames:{x | $x$}; separator=", "$$endif$ {
+	// package-private
+$var.types:{type |
+	final A$type$ value$i0$;
+}$
+
+	public $var.className$($var.types:{type | A$i0$ arg$i0$}; separator=", "$) {
+$var.types:{type | 		this.value$i0$ = arg$i0$;
+}$	\}
+
+
+$var.types:{type |
+	public A$type$ getValue$i0$() {
+		return this.value$i0$;
+	\}
+
+
+}$	public Object getValue(int index) {
+		switch(index) {
+$var.types:{type |
+			case $i0$: return this.value$i0$;
+}$			default: throw new IndexOutOfBoundsException(index + " of $length(var.types)$ value tuple");
+		\}
+	\}
+
+
+	public int size() {
+		return $length(var.types)$;
+	\}
+
+$if(var.implementClassNames)$
+
+	@Override
+	public A0 getKey() {
+		return this.value0;
+	\}
+
+
+	@Override
+	public A1 getValue() {
+		return this.value1;
+	\}
+
+
+	@Override
+	public A1 setValue(A1 value) {
+		throw new IllegalStateException("cannot modify immutable tuple");
+	\}
+
+
+	@Override
+	public String toString() {
+		return this.value0 + "=" + this.value1;
+	\}
+
+$else$
+
+
+	@Override
+	public String toString() {
+		return "[" + $var.types:{type | this.value$i0$}; separator=" + \", \" + "$ + "]";
+	\}
+
+$endif$
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+$var.types:{type |
+		result = prime * result + ((value$i0$ == null) ? 0 : value$i0$.hashCode());
+}$		return result;
+	\}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) { return true; \}
+		if (obj == null) { return false; \}
+		if (!(obj instanceof $var.className$)) {
+			return false;
+		\}
+
+		@SuppressWarnings("unchecked")
+		$var.className$<$var.types:{type | A$i0$}; separator=", "$> other = ($var.className$<$var.types:{type | A$i0$}; separator=", "$>)obj;
+$var.types:{type |
+		if (value$i0$ == null) {
+			if (other.value$i0$ != null) { return false; \}
+		\}
+		else if (!value$i0$.equals(other.value$i0$)) {
+			return false;
+		\}
+
+}$		return true;
+	\}
+
+
+	/** Convert a set of values to a tuple
+	 * @return the newly created tuple
+	 */
+	public static final <$var.types:{type | A$i0$}; separator=", "$> $var.className$<$var.types:{type | A$i0$}; separator=", "$> of($var.types:{type | A$type$ arg$i0$}; separator=", "$) {
+		return new $var.className$<>($var.types:{type | arg$i0$}; separator=", "$);
+	\}
+
+\}
+
+>>
