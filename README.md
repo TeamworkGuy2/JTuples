@@ -1,6 +1,6 @@
 JTuples
 ==============
-version: 0.1.0
+version: 0.1.1
 
 Helpers for working with Tuples (i.e. Map.Entry), including 2, 3, and 4 parameter tuple implementations.
 The purpose is to provide type inference to shorten the amount of code needed to create an entry (i.e. Tuples.of() instead of new AbstractMap.SimpleImmutableEntry()) and provide methods for mapping, copying, and comparing entries.

@@ -52,7 +52,9 @@ public class GenerateTuples {
 		info.className = name;
 		info.packageName = pkgName;
 
-		info.types = Arrays.asList(IntStream.range(startIndex, startIndex + count).mapToObj((i) -> Arrays.asList(IntStream.range(0, i).boxed().toArray((s) -> new Integer[s]))).toArray((s) -> new List[s]));
+		@SuppressWarnings("unchecked")
+		List<Integer>[] intRanges = IntStream.range(startIndex, startIndex + count).mapToObj((i) -> Arrays.asList(IntStream.range(0, i).boxed().toArray((s) -> new Integer[s]))).toArray((s) -> new List[s]);
+		info.types = Arrays.asList(intRanges);
 
 		ST stTmpl = STTemplates.fromFile(tmplDir + "TTuples.stg", "TTuples", importsMapper);
 		TemplateRenderBuilder.newInst()
